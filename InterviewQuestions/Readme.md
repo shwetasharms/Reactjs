@@ -74,7 +74,7 @@ Create a higher-order component (HOC) that checks the user's role before allowin
 
 ```javascript
 // ProtectedRoute.js
-import React from 'react';
+import React from 'react';f
 import { Route, Redirect } from 'react-router-dom';
 import { useAuth } from './authContext';
 
