@@ -11,7 +11,7 @@ Hide/Show table of contents
 | --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |     | **Core React**                                                                                                                                                                                                                   |
 | 1   | [What is React?](#what-is-react)                                                                                                                                                                                                 |
-| 2   | [What is the history behind React evolution?](#What-is-the-history-behind-React-evolution)                                                                                                                                       |
+| 2   | [What is useMemo?](#What-is-the-history-behind-React-evolution)                                                                                                                                       |
 | 3   | [What are the major features of React?](#what-are-the-major-features-of-react)                                                                                                                                                   |
 | 4   | [What is JSX?](#what-is-jsx)                                                                                                                                                                                                     |
 | 5   | [What is the difference between Element and Component?](#what-is-the-difference-between-element-and-component)                                                                                                                   |
@@ -401,15 +401,92 @@ Hide/Show table of contents
 
     **[⬆ Back to Top](#table-of-contents)**
 
-2.  ### What is the history behind React evolution?
+2.  ### What is usememo?
 
-    The history of ReactJS started in 2010 with the creation of **XHP**. XHP is a PHP extension which improved the syntax of the language such that XML document fragments become valid PHP expressions and the primary purpose was used to create custom and reusable HTML elements.
+   
+`useMemo` is a React hook that helps optimize performance by memoizing (caching) expensive calculations, so they don’t get re-executed unnecessarily on every render. It only recomputes the value when the dependencies in the dependency array change, avoiding unnecessary recalculations and improving the app’s performance.
 
-    The main principle of this extension was to make front-end code easier to understand and to help avoid cross-site scripting attacks. The project was successful to prevent the malicious content submitted by the scrubbing user.
+### Syntax:
+```js
+const memoizedValue = useMemo(() => {
+  // expensive calculation or operation
+  return value;
+}, [dependency1, dependency2]);
+First argument: A function that returns a value (e.g., an expensive calculation or operation).
+Second argument: A dependency array. React will only recompute the memoized value if any of the dependencies have changed.
+Why Use useMemo?
+Performance optimization: Helps prevent unnecessary recalculations for expensive operations.
+Avoid unnecessary re-renders: Reduces the re-execution of functions or recalculating values unless necessary.
+Example: Using useMemo for Filtering a List
+Imagine you have a large list of items and you want to filter them based on a search query. Without useMemo, the filtering operation would run on every render, even if the list hasn’t changed. This can cause performance issues.
 
-    But there was a different problem with XHP in which dynamic web applications require many roundtrips to the server, and XHP did not solve this problem. Also, the whole UI was re-rendered for small change in the application. Later, the initial prototype of React is created with the name **FaxJ** by Jordan inspired from XHP. Finally after sometime React has been introduced as a new library into JavaScript world.
+Without useMemo:
+js
+Copy
+import React, { useState } from 'react';
 
-    **Note:** JSX comes from the idea of XHP
+function ItemList({ items }) {
+  const [query, setQuery] = useState('');
+
+  const filteredItems = items.filter(item => item.includes(query));
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search items"
+      />
+      <ul>
+        {filteredItems.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default ItemList;
+In this example, the filter operation runs on every render.
+
+With useMemo:
+js
+Copy
+import React, { useState, useMemo } from 'react';
+
+function ItemList({ items }) {
+  const [query, setQuery] = useState('');
+
+  const filteredItems = useMemo(() => {
+    return items.filter(item => item.includes(query));
+  }, [items, query]); // Only re-run filter if 'items' or 'query' changes
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search items"
+      />
+      <ul>
+        {filteredItems.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default ItemList;
+When to Use useMemo:
+For expensive operations like filtering or sorting large datasets.
+When you need to avoid unnecessary re-renders of child components that rely on memoized values.
+When Not to Use useMemo:
+Don't use useMemo prematurely. If a calculation is cheap or doesn’t have performance bottlenecks, it might just add unnecessary complexity.
+React is efficient at handling re-renders, so only use useMemo when performance is truly a concern.
+
 
     **[⬆ Back to Top](#table-of-contents)**
 
