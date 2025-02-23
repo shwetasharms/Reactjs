@@ -124,6 +124,20 @@
 ---
 
 ## Components
+A React component is basically a building block of a React application. Think of it as a small piece or unit of code that defines a part of the user interface (UI) of your web page or app.
+
+Imagine you're creating a website. The website can have different parts, like a header, a footer, buttons, or a list of items. Each of these parts can be thought of as a React component.
+
+Here’s a simple way to understand it:
+
+Reusable: A component is like a template. You can use it many times in different places without having to rewrite the code. For example, if you create a button component, you can reuse it all over your app wherever you need a button.
+
+Self-contained: Each component takes care of its own job. For example, a button component knows how to look (its appearance) and what to do (its behavior when clicked). It doesn't need to know anything about the rest of the app, just what it's supposed to do.
+
+Component types: There are mainly two types of React components:
+
+Functional Components: These are simple JavaScript functions that return the UI (HTML).
+Class Components: These are a bit more complex and use classes to define the component, but in modern React, functional components are more commonly used.
 
 ### Functional Components
 Functional components are...
