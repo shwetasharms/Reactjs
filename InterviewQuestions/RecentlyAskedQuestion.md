@@ -59,3 +59,54 @@
 18. **What's the difference between SSR and CSR?**
 19. **Why choose TypeScript over vanilla JavaScript?**
 20. **How do you decide between REST and GraphQL?**
+
+---
+
+## 🧪 Coding Problems
+
+### 👩‍💻 Beginner to Intermediate Scenarios
+
+1. Display dynamic HTML content in React
+2. Pass data from Parent ➡️ Child
+3. Call Parent method from Child
+4. Access the DOM using useRef
+5. Bind arrays/objects to Dropdowns
+6. Create Lazy Loaded Component
+7. Show user input in another Textbox
+8. Loop through Arrays/Objects
+9. Conditional Rendering 🟢🔴
+10. Change styles based on conditions
+11. Show/Hide data conditionally
+12. Bind array to Radio Buttons
+13. Display selected radio value
+14. Call method on initial render
+15. Loop through object keys & values
+16. Re-render component on value change
+17. Trigger function on every render
+18. Add items to useState array
+19. Create a Search Filter
+20. Counter using useState
+21. Counter using useReducer
+
+### 🧩 Advanced Component Scenarios
+
+22. Control child textbox (focus/enable/disable) from Parent
+23. Implement Debouncing
+24. Fetch API data in component
+25. Force Re-render without useState
+26. Run method after state update or re-render
+27. Show characters remaining in textarea using useRef
+28. Dynamic dropdowns (e.g., State by Country)
+29. Type check props with prop-types
+30. Share data using Context API
+31. Optimization using useMemo 💡
+32. Optimization using useCallback 💡
+33. Create an Error Boundary
+34. Display selected dropdown value in textbox
+35. Create a PureComponent
+36. Controlled vs Uncontrolled components
+37. Build a Custom Hook
+38. Create a Popup using Portal
+39. Class lifecycle hooks vs useEffect
+40. Build a Pagination Component
+41. Safeguard your React app (Security) 🔐
