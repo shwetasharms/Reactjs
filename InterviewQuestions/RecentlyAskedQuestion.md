@@ -3,26 +3,51 @@
 ## 🧠 React Core Concepts
 
 1. **Why is React called a Single Page Application (SPA)?**
+  Ans- React is called a Single Page Application (SPA) framework because it dynamically updates the content on a single HTML page without reloading the entire page from the server.
+
+In a traditional multi-page application (MPA), every time a user navigates to a new page, the browser requests a new HTML file from the server — this causes a full page reload.
+
+In contrast, React loads a single index.html file once, and then uses JavaScript (specifically React's Virtual DOM and client-side routing) to update just the parts of the page that change. This makes the application faster and more responsive.
+
+For example, when using React Router, the URL changes, but React intercepts that change and renders the appropriate component instead of fetching a new HTML page from the server. This creates the illusion of multiple pages, but under the hood, it's still one page — hence, 'Single Page Application'.
+
+So in summary, React enables SPA behavior by:
+
+Loading a single HTML file.
+
+Using client-side routing.
+
+Dynamically updating content without full reloads.
+This improves performance, user experience, and feels more like a native app."**
+
 2. **How does React update views without full page reloads?**
-3. **Write a custom hook for debounce function.**
+Ans- It compares the current Virtual DOM with the previous one (diffing), calculates the minimal changes, and updates only those parts in the real DOM — all done dynamically via JavaScript without refreshing the entire page.
+3. **What is diffing algorithm in react js**
+Ans- Diffing in React is the process of comparing the new Virtual DOM with the previous Virtual DOM to find the smallest set of changes needed to update the real DOM efficiently.
+React uses this process to:
+Detect what has changed.
+Avoid re-rendering the entire UI.
+Only update parts of the DOM that actually changed.
+
+4. **Write a custom hook for debounce function.**
    *Use case: In a search input, delay the API call until the user stops typing for a set time (like 500 ms).*
-4. **Throttling vs Debounce (with examples)**
+5. **Throttling vs Debounce (with examples)**
 
    * **Debounce**: Wait for a pause before firing a function. (✏️ *e.g. search suggestions*)
    * **Throttle**: Allow a function to run at most once in a fixed time window. (🖱️ *e.g. scroll/resize event handler*)
-5. **Why is a `key` required in React lists?**
+6. **Why is a `key` required in React lists?**
    *Keys help React identify which items changed, are added, or removed during reconciliation.*
-6. **Why is using `index` as a key not recommended?**
-7. **What is a Promise and why do we use it?**
-8. **How do you handle errors in Promises without `try/catch`, `async/await`, or `.catch()`?**
-9. **What is reconciliation in React?**
-10. **Output‑based JavaScript questions**
+7. **Why is using `index` as a key not recommended?**
+8. **What is a Promise and why do we use it?**
+9. **How do you handle errors in Promises without `try/catch`, `async/await`, or `.catch()`?**
+10. **What is reconciliation in React?**
+11. **Output‑based JavaScript questions**
     *Closures, scope, and hoisting fundamentals.*
-11. **Callback questions**
+12. **Callback questions**
     *How callbacks work in async flows and their value even with Promises/async-await.*
-12. **React Hooks (useState, etc.)**
+13. **React Hooks (useState, etc.)**
     *How `useState` works and why hooks are preferred in function components.*
-13. **Form Libraries in React**
+14. **Form Libraries in React**
     *Formik vs React Hook Form, and how they simplify validation/state handling.*
 
 ---
