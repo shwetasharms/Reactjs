@@ -3,7 +3,7 @@
 ## 🧠 React Core Concepts
 
 ### 1. **Why is React called a Single Page Application (SPA)?**
-  Ans- React is called a Single Page Application (SPA) framework because it dynamically updates the content on a single HTML page without reloading the entire page from the server.
+  Ans- React is called a Single Page Application (SPA) framework because it dynamically updates the content on a single HTML page withoutreloading the entire page from the server.
 
 In a traditional multi-page application (MPA), every time a user navigates to a new page, the browser requests a new HTML file from the server — this causes a full page reload.
 
@@ -135,3 +135,15 @@ Only update parts of the DOM that actually changed.
 39. Class lifecycle hooks vs useEffect
 40. Build a Pagination Component
 41. Safeguard your React app (Security) 🔐
+What security features should be taken while designing API's?
+💠 What is API throttling?
+💠 How to improve the performance in React Application?
+💠 What is debouncing in React?
+💠 What if in a react app we need to develop a feature of auto save the inputs of a form?
+💠 Which react library is used to represent JSON data into charts, graphs, etc for better visualization and performance?
+💠 If you have to inform the backend developers about some API's are failing how will you do that?
+💠 Which tool is used to improve code standards in react application to show warnings for developers?
+💠 What are the unit testing tools used in React Application?
+💠 How do you handle API test case scenarios in React Application?
+💠 Give me a estimation of completing a auto save functionality with unit testing including?
+💠 Which cloud is used in your app development?
