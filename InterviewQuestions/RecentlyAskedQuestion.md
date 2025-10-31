@@ -21,7 +21,7 @@ Dynamically updating content without full reloads.
 This improves performance, user experience, and feels more like a native app."**
 
 ### 2. **How React interacts with the DOM**
-Ans- **TL;DR:**
+Ans- 
 React doesn’t manipulate the real DOM directly. It uses a **Virtual DOM** — an in-memory representation of the UI — to efficiently update only the parts of the actual DOM that change.
 
 ---
