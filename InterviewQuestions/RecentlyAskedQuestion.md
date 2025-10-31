@@ -20,6 +20,34 @@ Using client-side routing.
 Dynamically updating content without full reloads.
 This improves performance, user experience, and feels more like a native app."**
 
+### 2. **How React interacts with the DOM**
+Ans- **TL;DR:**
+React doesn’t manipulate the real DOM directly. It uses a **Virtual DOM** — an in-memory representation of the UI — to efficiently update only the parts of the actual DOM that change.
+
+---
+
+### 🔍 Step-by-step breakdown
+
+1. **Render Phase (Virtual DOM creation)**
+
+   * React components (written in JSX) are converted to **React elements** — lightweight objects that describe what the UI should look like.
+   * These objects form a **Virtual DOM tree**.
+
+2. **Diffing Phase (Comparison)**
+
+   * When state or props change, React builds a **new Virtual DOM**.
+   * It compares the new Virtual DOM with the previous one using a **diffing algorithm**.
+   * React determines the minimal number of changes needed to update the real DOM.
+
+3. **Reconciliation Phase (Real DOM update)**
+
+   * React applies only those differences (called **reconciliation**) to the **real DOM**.
+   * DOM updates are **batched** and **asynchronous** for performance.
+
+4. **Commit Phase**
+
+   * Once diffing is done, React updates the **real DOM** and triggers **lifecycle methods/hooks** (`componentDidMount`, `useEffect`, etc.).
+
 ### 2. **How does React update views without full page reloads?**
 Ans- It compares the current Virtual DOM with the previous one (diffing), calculates the minimal changes, and updates only those parts in the real DOM — all done dynamically via JavaScript without refreshing the entire page.
 ### 3. **What is diffing algorithm in react js**
