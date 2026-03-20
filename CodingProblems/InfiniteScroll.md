@@ -112,23 +112,80 @@ const lastElementRef = (node) => {
   if (node) observer.current.observe(node);
 };
 ```
+## Full Code With Scroll Event 
+```
+import React, { useEffect, useState } from "react";
 
----
+function InfiniteScroll() {
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
 
-## ⚠️ Common Mistakes
+  const fetchData = async () => {
+    if (!hasMore) return;
 
-* ❌ Multiple API calls (no debounce/throttle)
-* ❌ Not handling loading state
-* ❌ No cleanup of event listeners
-* ❌ Fetching same page repeatedly
+    setLoading(true);
 
----
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`
+    );
+    const result = await response.json();
 
-## 🎯 Interview Short Answer (30–40 sec)
+    if (result.length === 0) {
+      setHasMore(false);
+    } else {
+      setData((prev) => [...prev, ...result]);
+    }
 
-👉 "Infinite scroll is a UI pattern where data loads automatically when the user reaches the bottom of the page. In React, we implement it by tracking scroll position or using Intersection Observer. When the user reaches near the bottom, we trigger an API call and append the new data to the existing state. For better performance, Intersection Observer is preferred over scroll events."
+    setLoading(false);
+  };
 
----
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop >=
+        document.documentElement.offsetHeight - 100 &&
+      !loading
+    ) {
+      setPage((prev) => prev + 1);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [page]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [loading]);
+
+  return (
+    <div>
+      <h1>Infinite Scroll</h1>
+
+      {data.map((item) => (
+        <div
+          key={item.id}
+          style={{
+            border: "1px solid #ccc",
+            margin: "10px",
+            padding: "10px",
+          }}
+        >
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </div>
+      ))}
+
+      {loading && <p>Loading...</p>}
+      {!hasMore && <p>No more data</p>}
+    </div>
+  );
+}
+
+export default InfiniteScroll;
+```
 
 ## 💡 Follow-up Interview Questions
 
@@ -138,19 +195,3 @@ const lastElementRef = (node) => {
 * How do you implement pagination with infinite scroll?
 
 ---
-
-## 🧪 Bonus: Pro Tips
-
-* Use libraries like `react-infinite-scroll-component`
-* Add skeleton loaders for better UX
-* Handle API limits properly
-
----
-
-## 🏁 Conclusion
-
-Infinite scroll improves user experience by removing pagination and making apps feel smooth and modern.
-
----
-
-✨ You can now confidently explain AND implement infinite scroll in React!
