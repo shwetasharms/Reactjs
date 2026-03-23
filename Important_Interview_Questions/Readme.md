@@ -1,5 +1,25 @@
 This document contains a list of commonly asked React.js interview questions. Click on a question to jump to the answer.
 
+
+<details>
+<summary><strong>Ques 1 - How do you handle JWT in your React application?</strong></summary>
+   
+first thing — we never use just one token. We use two tokens. One is the Access Token, which is short-lived — around 15 to 30 minutes. And the second is the Refresh Token, which is long-lived — around 7 to 30 days.
+Now the most important part — where do we store them?
+The access token — we keep it in memory. In a JavaScript variable or React state. We never store it in localStorage because localStorage is vulnerable to XSS attacks.
+The refresh token — we store it in an httpOnly secure cookie. Why? Because JavaScript cannot access httpOnly cookies. So even if there's an XSS attack, your refresh token is safe.
+
+Now let's see the flow.
+User logs in. Backend verifies the credentials, sends back the access token in the response body and sets the refresh token as an httpOnly cookie.
+For every API call, we attach the access token in the Authorization header — Bearer <token>.
+Now when the access token expires, our API returns 401. Here we use an Axios interceptor — it catches the 401, silently calls the /refresh-token endpoint, gets a new access token, and retries the failed request. The user doesn't even notice.
+
+And for logout — we clear the access token from memory, call a logout API that deletes the cookie, and blacklist the refresh token in Redis or database.
+
+One bonus point that will impress the interviewer — mention Refresh Token Rotation. Every time a refresh token is used, backend issues a new one and invalidates the old one. If the old token is ever reused, it means it was stolen — so we invalidate all tokens for that user.
+</details>
+### Ques 2- 
+
 ## Table of Contents
 
 1. [What is React?](#1-what-is-react)
