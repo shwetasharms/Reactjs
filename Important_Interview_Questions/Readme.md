@@ -18,7 +18,33 @@ And for logout — we clear the access token from memory, call a logout API that
 
 One bonus point that will impress the interviewer — mention Refresh Token Rotation. Every time a refresh token is used, backend issues a new one and invalidates the old one. If the old token is ever reused, it means it was stolen — so we invalidate all tokens for that user.
 </details>
-### Ques 2- 
+
+<details>
+<summary><strong>Ques 2- What are Render Methods in React.js and how have they changed across different versions?</strong></summary>
+So first — what is rendering in React?
+Rendering simply means React taking your component and converting it into actual HTML that the browser can show on the screen. The way React does this has changed a lot over the years. And interviewers love to check if you know this evolution.
+
+Let's go version by version.
+React 16 and before — we had ReactDOM.render(). This was the only way to mount your React app into the DOM.
+You would write:
+ReactDOM.render(<App />, document.getElementById('root'))
+This used what we call Synchronous Rendering — meaning React would process the entire component tree in one go. It could not pause or break the work. If the tree was large, the UI could freeze.
+
+React 16.8 — Hooks arrived. useState, useEffect and others. This didn't change the render method itself, but it completely changed how we write components. Before this, we needed class components with a render() method inside them. After hooks, we shifted to functional components — where the entire function body is the render. No separate render() method needed.
+
+React 18 — this is the big change. ReactDOM.render() was deprecated. It was replaced with createRoot().
+Now we write:
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<App />)
+Why this change? Because createRoot enables Concurrent Rendering. This means React can now pause, prioritize, and resume rendering work. If a user is typing in an input, React can pause the heavy background rendering and handle the input first. The UI stays smooth.
+
+Along with this, React 18 introduced Automatic Batching. Before React 18, state updates inside setTimeout or fetch callbacks were rendered one by one. Now React batches all state updates together — fewer re-renders, better performance.
+
+So quick summary for your interview:
+React 16 and before — ReactDOM.render() — synchronous, blocks the UI.
+React 16.8 — Hooks came — class components with render() method shifted to functional components.
+React 18 — createRoot() replaced ReactDOM.render() — concurrent rendering, automatic batching, smoother UI.
+</details>
 
 ## Table of Contents
 
