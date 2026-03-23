@@ -1,3 +1,44 @@
+<details>
+  <summary>
+    What will be the output? 🤔
+
+import { useState, useRef } from "react";
+
+export default function App() {
+  const [count, setCount] = useState(0);
+  const ref = useRef(0);
+
+  const handleClick = () => {
+    setCount(count + 1);
+    ref.current += 1;
+
+    console.log("State:", count);
+    console.log("Ref:", ref.current);
+  };
+
+  return (
+    <button onClick​={handleClick}>
+      {count} | {ref.current}
+    </button>
+  );
+}
+
+Looks simple... but there’s a twist 👀
+
+👉 What will be:
+
+1. Console output after first click?
+2. UI value after click?
+   </summary>
+   console.log("State:", count) prints 0, not 1 — because setCount is asynchronous. When you call setCount(count + 1), React schedules the update. It doesn't change the count variable immediately. The count inside this function closure is still 0. The new value 1 is only available in the next render.
+console.log("Ref:", ref.current) prints 1 — because useRef is synchronous. ref.current += 1 mutates the value instantly. No waiting, no re-render needed. It's just a plain JavaScript object.
+UI shows 1 | 1 — because after the click handler finishes, React re-renders the component. In the new render, count is now 1 and ref.current is also 1. So both show updated values on screen.
+
+The key takeaway interviewers check here:
+useState → batched, async, value available next render. Triggers re-render.
+useRef → instant mutation, value available immediately. Does NOT trigger re-render.
+</details>
+
 1. Reverse a String 
 2. Check if a String is a Palindrome 
 3. Remove Duplicates from a String 
